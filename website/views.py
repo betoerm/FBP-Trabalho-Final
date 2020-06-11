@@ -1,5 +1,7 @@
 from django.views.generic import TemplateView, ListView, UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
+from django.db.models.functions import Cast
+from django.db.models import Sum
 from controlefinanceiro.models import ContasPagar, ContasReceber, ClassificacaoPagar, FormaPagamento
 from website.forms import InsereContasPagarForm, InsereContasReceberForm, InsereClassificaoPagarForm, InsereFormasPagamento
 
@@ -116,15 +118,22 @@ class FormasPagamentoDeleteView(DeleteView):
 
 class FluxoListView(ListView):
     template_name= "website/fluxo.html"
-    #queryset = ContasPagar.objetos.order_by('data_vencimento').values('descricao', 'data_vencimento', 'data_pagamento', 'valor', 'situacao')  
-    context_object_name = "fluxo"
+
+    context_object_name = "fluxo"       
+
     def get_queryset(self):
         return ContasPagar.objetos.order_by("data_vencimento").values('descricao', 'data_vencimento', 'data_pagamento', 'valor',
-         'situacao').annotate(total_pagar = (ContasPagar.objetos.aggregate(sum('valor'))))  
+         'situacao')
 
     def get_context_data(self, **kwargs):
         context = super(FluxoListView, self).get_context_data(**kwargs  )
-        context['fluxoreceber'] = ContasReceber.objetos.order_by("data_expectativa").values('descricao', 'data_expectativa', 'data_recebimento', 'valor', 'situacao').aggregate(total_receber=sum('valor'))    
+        context ['fluxoreceber']= {
+            'fluxoreceber': ContasReceber.objetos.order_by("data_expectativa").values('descricao', 'data_expectativa',
+                'data_recebimento', 'valor', 'situacao'), 
+            'total_pagar': ContasPagar.objetos.all().filter(situacao = 'A pagar').aggregate(Sum('valor')),
+            'total_receber': ContasReceber.objetos.all().filter(situacao = 'Recebido').aggregate(Sum('valor'))
+        }
         return context
-    
 
+    
+    

@@ -33,6 +33,7 @@ urlpatterns = [
     path('formaspagamento/<pk>', FormasPagamentoUpdateView.as_view(), name="atualiza_formas_pagamento"),
     path('formaspagamento/excluir/<pk>', FormasPagamentoDeleteView.as_view(), name="exclui_formas_pagamento"),
 
-    #FLUXO
-    path('fluxo/', FluxoListView.as_view(), name = "fluxo")   
+    #FLUXOS
+    path('fluxo/', FluxoListView.as_view(), name = "fluxo"),   
+    path('fluxomensal/', FluxoListView.as_view(), name = "fluxomensal")
 ]

@@ -14,10 +14,8 @@
 
           {% if fluxo|length > 0 %}
             <p class="card-text">
-              Lista de <code>Contas a Pagar e a Receber</code> cadastradas.
+              Fluxo <code>Por Mês</code>.
             </p>
-
-            <p>A pagar: {{ fluxoreceber.total_pagar.valor__sum }}</p>
 
             <table class="table">
               <thead class="thead-dark">
@@ -32,6 +30,8 @@
               <tbody>
               
               {% for fluxo in fluxo %}
+
+
                 <tr>
                   <th scope="row">{{ fluxo.descricao }}</th>
                   <td>{{ fluxo.data_vencimento|date:'d/m/Y' }}</td>
