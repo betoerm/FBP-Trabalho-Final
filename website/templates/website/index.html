@@ -1,0 +1,135 @@
+{% extends "website/_layouts/base.html" %}
+
+{% block title %}Página Inicial{% endblock %}
+
+<!-- Bloco de conteúdo da nossa página -->
+{% block conteudo %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cadastrar uma classificação de conta a pagar</h5>
+          <p class="card-text">
+            Cadastre aqui uma nova <code>Conta</code>.
+          </p>
+          <a href="{% url 'website:cria_contas_pagar' %}"
+             class="btn btn-primary">
+            Nova Conta a Pagar
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lista de Contas a Pagar</h5>
+          <p class="card-text">
+            Veja aqui a lista de <code>Contas</code> cadastradas.
+          </p>
+          <a href="{% url 'website:lista_contas_pagar' %}"
+             class="btn btn-primary">
+            Vá para Lista
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cadastrar uma classificação de conta a pagar</h5>
+          <p class="card-text">
+            Cadastre aqui uma nova <code>Classificação</code>.
+          </p>
+          <a href="{% url 'website:cria_classificacao_pagar' %}"
+             class="btn btn-primary">
+            Nova Conta a Pagar
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lista de Classificação de Contas a Pagar</h5>
+          <p class="card-text">
+            Veja aqui a lista de <code>Classificação</code> cadastradas.
+          </p>
+          <a href="{% url 'website:lista_classificacao_pagar' %}"
+             class="btn btn-primary">
+            Vá para Lista
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cadastrar uma conta a receber</h5>
+          <p class="card-text">
+            Cadastre aqui uma nova <code>Conta</code>.
+          </p>
+          <a href="{% url 'website:cria_contas_receber' %}"
+             class="btn btn-primary">
+            Nova Conta a Pagar
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lista de Contas a Receber</h5>
+          <p class="card-text">
+            Veja aqui a lista de <code>Contas</code> cadastradas.
+          </p>
+          <a href="{% url 'website:lista_contas_receber' %}"
+             class="btn btn-primary">
+            Vá para Lista
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cadastrar uma forma de pagamento</h5>
+          <p class="card-text">
+            Cadastre aqui uma nova <code>forma de pagamento</code>.
+          </p>
+          <a href="{% url 'website:cria_formas_pagamento' %}"
+             class="btn btn-primary">
+            Nova Forma de Pagamento
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lista de Formas de Pagamento</h5>
+          <p class="card-text">
+            Veja aqui a lista de <code>Formas de Pagamento</code> cadastradas.
+          </p>
+          <a href="{% url 'website:lista_formas_pagamento' %}"
+             class="btn btn-primary">
+            Vá para Lista
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+{% endblock %}

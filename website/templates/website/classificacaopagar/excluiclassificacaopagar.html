@@ -1,0 +1,32 @@
+<!-- Estendemos do template base -->
+{% extends "website/_layouts/base.html" %}
+
+<!-- Bloco que define o <title></title> da nossa página -->
+{% block title %}Exclusão de classificação de conta a pagar{% endblock %}
+
+<!-- Bloco de conteúdo da nossa página -->
+{% block conteudo %}
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Exclusão de Classificação de Conta a Pagar</h5>
+
+        <p class="card-text">
+          Você tem certeza que quer excluir a conta <b>{{ classificacaopagar.descricao }}</b>?
+        </p>
+
+        <form method="post">
+          {% csrf_token %}
+
+          <hr />
+          <div class="text-right">
+            <a href="{% url 'website:lista_classificacao_pagar' %}" class="btn btn-outline-danger">
+              Cancelar
+            </a>
+            <button class="btn btn-danger">Excluir</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
