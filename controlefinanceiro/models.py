@@ -70,9 +70,15 @@ class ContasPagar(models.Model):
         default=PAGAR,
     )
 
-    classificacoes = models.ManyToManyField(ClassificacaoPagar)
+    classificacoes = models.ForeignKey(
+        ClassificacaoPagar, on_delete=models.CASCADE,
+        default=3
+    )
     
-    formaspagamento = models.ManyToManyField(FormaPagamento)
+    formaspagamento = models.ForeignKey(
+        FormaPagamento, on_delete=models.CASCADE,
+        default=1
+    )
 
     objetos = models.Manager()
 
@@ -104,10 +110,16 @@ class ContasReceber(models.Model):
         default=RECEBIDO,
     )
 
-    classificacoes = models.ManyToManyField(ClassificacaoPagar)
-
-    formaspagamento = models.ManyToManyField(FormaPagamento)
+    classificacoes = models.ForeignKey(
+        ClassificacaoPagar, on_delete=models.CASCADE,
+        default=7
+    )
     
+    formaspagamento = models.ForeignKey(
+        FormaPagamento, on_delete=models.CASCADE,
+        default=1
+    )
+
     objetos = models.Manager()
 
 

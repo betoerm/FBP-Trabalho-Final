@@ -21,8 +21,7 @@ class ContasPagarListView(ListView):
     template_name = "website/contaspagar/listacontaspagar.html"
     model = ContasPagar    
     context_object_name = "contaspagar"
-
-
+    
 class ContasPagarUpdateView(UpdateView):
     template_name = "website/contaspagar/atualizacontaspagar.html"    
     model = ContasPagar
@@ -76,7 +75,7 @@ class ClassificacaoPagarListView(ListView):
     template_name = "website/classificacaopagar/listaclassificacaopagar.html"
     model = ClassificacaoPagar
     context_object_name = "classificacaopagar"  
-
+    
 class ClassificacaoPagarUpdateView(UpdateView):
     template_name = "website/classificacaopagar/atualizaclassificacaopagar.html"    
     model = ClassificacaoPagar
@@ -131,7 +130,7 @@ class FluxoListView(ListView):
         context ['fluxoreceber']= {
             'fluxoreceber': ContasReceber.objetos.order_by("data_expectativa").values('descricao', 'data_expectativa',
                 'data_recebimento', 'valor', 'situacao'), 
-            'total_pagar': ContasPagar.objetos.all().filter(situacao = 'A pagar').aggregate(Sum('valor')),
+            'total_pagar': ContasPagar.objetos.all().filter(situacao = 'Pago').aggregate(Sum('valor')),
             'total_receber': ContasReceber.objetos.all().filter(situacao = 'Recebido').aggregate(Sum('valor'))
         }
         return context

@@ -17,8 +17,7 @@
 
             <table class="table">
               <thead class="thead-dark">
-              <tr>
-                <th scope="col"></th>
+              <tr>               
                 <th scope="col">Descrição</th>
                 <th scope="col">Data de Vencimento</th>
                 <th scope="col">Data de Pagamento</th>
@@ -37,8 +36,8 @@
                   <td>{{ conta.data_pagamento|date:'d/m/Y' }}</td>
                   <td>{{ conta.valor }}</td>
                   <td>{{ conta.situacao }}</td>
-                  <td>{{ conta.classificacoes }}</td>
-                  <td>{{ conta.formaspagamento }}</td>
+                  <td>{{ conta.classificacoes.descricao }}</td>
+                  <td>{{ conta.formaspagamento.descricao }}</td>
                   <td class="text-center">
                     <a href="{% url 'website:atualiza_contas_pagar' pk=conta.id %}"
                        class="btn btn-primary">

@@ -2,7 +2,8 @@ from django import forms
 from bootstrap_datepicker_plus import DateTimePickerInput
 from controlefinanceiro.models import ContasPagar, ContasReceber, ClassificacaoPagar, FormaPagamento
 
-class InsereContasPagarForm(forms.ModelForm):                        
+class InsereContasPagarForm(forms.ModelForm):         
+
     class Meta:
         model = ContasPagar
 
@@ -11,21 +12,25 @@ class InsereContasPagarForm(forms.ModelForm):
             'data_pagamento',
             'valor',
             'descricao',
-            'situacao'
+            'situacao',            
+            'classificacoes',
+            'formaspagamento'
         ]
+
+        labels = {
+            'data_vencimento': 'Data de Vencimento',
+            'data_pagamento': 'Data de Pagamento ',
+            'valor': 'Valor',
+            'descricao': 'Descrição',
+            'situacao': 'Situação',
+            'classificacoes': 'Classificação',
+            'formaspagamento': 'Forma de Pagamento'
+        }
 
         widgets = {            
             'data_vencimento': DateTimePickerInput(format='%Y-%m-%d'), # specify date-frmat
             'data_pagamento': DateTimePickerInput(format='%Y-%m-%d'), # specify date-frmat
         }
-
-    classificacoes = forms.ChoiceField(
-            choices=[(cl.pk, cl.descricao) for cl in ClassificacaoPagar.objetos.all().filter(tipo='pagar')],
-        ) 
-
-    formaspagamento =  forms.ChoiceField(
-        choices=[(cl.pk, cl.descricao) for cl in FormaPagamento.objetos.all()]
-    ) 
 
 class InsereContasReceberForm(forms.ModelForm):                        
     class Meta:
@@ -35,21 +40,24 @@ class InsereContasReceberForm(forms.ModelForm):
             'data_recebimento',
             'valor',
             'descricao',
-            'situacao'
+            'situacao',
+            'classificacoes',
+            'formaspagamento' 
         ]
+        labels = {
+            'data_expectativa': 'Data de Expectativa de Recebimento',
+            'data_recebimento': 'Data de Recebimento ',
+            'valor': 'Valor',
+            'descricao': 'Descrição',
+            'situacao': 'Situação',
+            'classificacoes': 'Classificação',
+            'formaspagamento': 'Forma de Pagamento'
+        }
 
         widgets = {            
             'data_expectativa': DateTimePickerInput(format='%Y-%m-%d'), # specify date-frmat
             'data_recebimento': DateTimePickerInput(format='%Y-%m-%d'), # specify date-frmat
         }
-
-    classificacoes =  forms.ChoiceField(
-            choices=[(cl.pk, cl.descricao) for cl in ClassificacaoPagar.objetos.all().filter(tipo='receber')],
-        ) 
-
-    formaspagamento =  forms.ChoiceField(
-        choices=[(cl.pk, cl.descricao) for cl in FormaPagamento.objetos.all()]
-    ) 
 
 class InsereClassificaoPagarForm(forms.ModelForm):
     class Meta:
