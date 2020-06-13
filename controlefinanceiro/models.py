@@ -8,6 +8,20 @@ class ClassificacaoPagar(models.Model):
         blank=False,
     )    
 
+    PAGAR = 'pagar'
+    RECEBER = 'receber'
+
+    tipo_choices = [        
+        (PAGAR, 'pagar'),
+        (RECEBER, 'receber')
+    ]
+
+    tipo = models.CharField(
+        max_length=10,
+        choices=tipo_choices,
+        default=PAGAR,
+    )
+
     objetos = models.Manager()
 
 class FormaPagamento(models.Model):

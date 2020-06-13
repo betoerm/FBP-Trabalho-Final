@@ -22,6 +22,7 @@ class ContasPagarListView(ListView):
     model = ContasPagar    
     context_object_name = "contaspagar"
 
+
 class ContasPagarUpdateView(UpdateView):
     template_name = "website/contaspagar/atualizacontaspagar.html"    
     model = ContasPagar

@@ -1,6 +1,9 @@
 {% extends "website/_layouts/base.html" %}
 
-{% load widget_tweaks %}
+{% load bootstrap4 %}
+{% bootstrap_css %}  
+{% bootstrap_javascript jquery='full' %}
+{{ form.media }} 
 
 {% block title %}Cadastro de contas a pagar{% endblock %}
 
@@ -19,61 +22,8 @@
             <!-- Não se esqueça dessa tag -->
             {% csrf_token %}
 
-            <!-- Data de vencimento -->
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Data de Vencimento</span>
-              </div>
-              {% render_field form.data_vencimento class+="form-control" %}
-            </div>
+            {% bootstrap_form form %}
 
-            <!-- Data de pagamento -->
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Data de Pagamento</span>
-              </div>
-              {% render_field form.data_pagamento class+="form-control" %}
-            </div>
-
-            <!-- Valor -->
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Valor</span>
-              </div>
-              {% render_field form.valor class+="form-control" %}
-            </div>
-
-            <!-- Descrição -->
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Descrição</span>
-              </div>
-              {% render_field form.descricao class+="form-control" %}
-            </div>
-
-            <!-- Situação -->
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Situação</span>
-              </div>
-              {% render_field form.situacao class+="form-control" %}
-            </div>
-
-            <!-- Classificação -->
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Classificação</span>
-              </div>
-              {% render_field form.classificacoes class+="form-control" %}
-            </div>
-
-            <!-- Forma de Pagamento -->
-            <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Forma de Pagamento</span>
-            </div>
-            {% render_field form.formaspagamento class+="form-control" %}
-          </div>
             <hr>
             <div class="text-right">
               <a href="{% url 'website:lista_contas_pagar' %}" class="btn btn-outline-primary">Voltar</a>

@@ -1,10 +1,12 @@
 from django import forms
+from bootstrap_datepicker_plus import DateTimePickerInput
 from controlefinanceiro.models import ContasPagar, ContasReceber, ClassificacaoPagar, FormaPagamento
 
 class InsereContasPagarForm(forms.ModelForm):                        
     class Meta:
         model = ContasPagar
-        fields = [
+
+        fields = [           
             'data_vencimento',
             'data_pagamento',
             'valor',
@@ -12,9 +14,18 @@ class InsereContasPagarForm(forms.ModelForm):
             'situacao'
         ]
 
-    classificacoes = forms.ModelMultipleChoiceField(queryset=ClassificacaoPagar.objetos.all())
+        widgets = {            
+            'data_vencimento': DateTimePickerInput(format='%Y-%m-%d'), # specify date-frmat
+            'data_pagamento': DateTimePickerInput(format='%Y-%m-%d'), # specify date-frmat
+        }
 
-    formaspagamento = forms.ModelMultipleChoiceField(queryset=FormaPagamento.objetos.all())
+    classificacoes = forms.ChoiceField(
+            choices=[(cl.pk, cl.descricao) for cl in ClassificacaoPagar.objetos.all().filter(tipo='pagar')],
+        ) 
+
+    formaspagamento =  forms.ChoiceField(
+        choices=[(cl.pk, cl.descricao) for cl in FormaPagamento.objetos.all()]
+    ) 
 
 class InsereContasReceberForm(forms.ModelForm):                        
     class Meta:
@@ -27,15 +38,25 @@ class InsereContasReceberForm(forms.ModelForm):
             'situacao'
         ]
 
-    classificacoes = forms.ModelMultipleChoiceField(queryset=ClassificacaoPagar.objetos.all())    
+        widgets = {            
+            'data_expectativa': DateTimePickerInput(format='%Y-%m-%d'), # specify date-frmat
+            'data_recebimento': DateTimePickerInput(format='%Y-%m-%d'), # specify date-frmat
+        }
 
-    formaspagamento = forms.ModelMultipleChoiceField(queryset=FormaPagamento.objetos.all())
+    classificacoes =  forms.ChoiceField(
+            choices=[(cl.pk, cl.descricao) for cl in ClassificacaoPagar.objetos.all().filter(tipo='receber')],
+        ) 
+
+    formaspagamento =  forms.ChoiceField(
+        choices=[(cl.pk, cl.descricao) for cl in FormaPagamento.objetos.all()]
+    ) 
 
 class InsereClassificaoPagarForm(forms.ModelForm):
     class Meta:
         model = ClassificacaoPagar
         fields = [
-            'descricao'
+            'descricao',
+            'tipo'
         ]
 
 class InsereFormasPagamento(forms.ModelForm):
